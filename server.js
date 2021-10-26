@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log(chalk.blue("DB IS CONNECTED")))
     .catch(() => console.log(chalk.red("DB IS NOT CONNECTED")))
 
-//мидилве   
+//мидилве
 server.use(cors())
 server.use(express.json())
 
@@ -20,3 +20,4 @@ const port = 8000
 server.listen(process.env.PORT || port, () =>{
     console.log(chalk.magentaBright(`СЕРВЕР РАБОТАЕТ на порту ${port}`))
 })
+
