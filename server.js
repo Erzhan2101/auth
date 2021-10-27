@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const chalk = require("chalk")
 require("dotenv").config()
 const authRouter =require ("./routers/auth")
+const BlogRouter =require ("./routers/blog")
 
 const server = express()
 mongoose.connect(process.env.MONGO_URL)
@@ -15,6 +16,7 @@ server.use(cors())
 server.use(express.json())
 
 server.use("/api/v1", authRouter)
+server.use("/api/v1/blog", BlogRouter)
 
 const port = 8000
 server.listen(process.env.PORT || port, () =>{

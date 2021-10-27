@@ -24,7 +24,10 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: "user"
-    }
+    },
+    blog:[{
+        type: mongoose.Schema.Types.ObjectId, ref:"blog"
+    }]
 }, {timestamps: true})
 
 userSchema.pre("save", async function (next) {
