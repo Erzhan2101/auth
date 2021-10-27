@@ -40,7 +40,9 @@ const signin = (req, res) => {
 const isAuthenticate = async (req, res) => {
     const token = req.body.token
     try {
-        if (!token) new Error("NOT is TOKEN")
+        if (!token) {
+            res.status(401).json({message: "NOT is TOKEN"})
+        }
         const payload = jwt.verify(req.body.token, process.env.SECRET_KEY)
         const user = await User.findOne({_id: payload._id})
         res.json({token, user: {_id: user._id, email: user.email, name: user.name, role: user.role}})
@@ -50,3 +52,4 @@ const isAuthenticate = async (req, res) => {
 }
 
 module.exports = {signin, signup, isAuthenticate}
+
