@@ -10,8 +10,8 @@ const blogSchema = new mongoose.Schema({
         required: true,
     },
     user:{
-        // данные
-        type: mongoose.Schema.Types.ObjectId, ref:"blog"
+        // связь сдвумя коллекциями // данные //хранится только id
+        type: mongoose.Schema.Types.ObjectId, ref:"users"
     }
 }, {timestamps: true})
 
