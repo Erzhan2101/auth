@@ -2,7 +2,7 @@ const Blog = require("../models/blogModel")
 const User = require("../models/userModel")
 
 const getAllBlog = async (req, res) => {
-    const blog = await Blog.find({}).populate("user")
+    const blog = await Blog.find({}).populate("user", "-password")
     res.json(blog)
 }
 

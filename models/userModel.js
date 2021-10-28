@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     },
     blog:[{
         // связь сдвумя коллекциями // данные // хранится только id
-        type: mongoose.Schema.Types.ObjectId, ref:"blog"
+        type: mongoose.Schema.Types.ObjectId, ref:"blogs"
     }]
 }, {timestamps: true})
 

@@ -52,12 +52,20 @@ const isAuthenticate = async (req, res) => {
 }
 
 const getUserInfo = async (req, res) => {
-    try{
-       const user = await  User.findById(req.params.id)
-    }catch (e)  {
-        res.status(400).json({message: "NO USER"})
+    try {
+        // console.log(req.params.id)
+        const user = await User.findById(req.params.id).populate("blog")
+        res.json({
+                _id: user._id,
+                email: user.email,
+                name: user.name,
+                role: user.role,
+                blog: user.blog
+        })
+    } catch (e) {
+        return res.status(400).json({message: "NO USER"})
     }
 }
 
-module.exports = {signin, signup, isAuthenticate,getUserInfo}
+module.exports = {signin, signup, isAuthenticate, getUserInfo}
 
