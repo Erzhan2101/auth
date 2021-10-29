@@ -2,9 +2,23 @@ const Blog = require("../models/blogModel")
 const User = require("../models/userModel")
 
 const getAllBlog = async (req, res) => {
-    const blog = await Blog.find({}).populate("user", "-password")
-    res.json(blog)
+    try {
+        const blog = await Blog.find({}).populate("user", "-password")
+        res.json(blog)
+    }catch (e){
+        res.status(400).json({message: "ошибка"})
+    }
 }
+
+const getBlog = async (req, res) => {
+    try {
+        const blog = await Blog.findById(req.params.id)
+        res.json(blog)
+    }catch (e) {
+        res.status(400).json({message: "ошибка получения"})
+    }
+}
+
 
 const createPost = async (req, res) => {
     try {
@@ -17,4 +31,4 @@ const createPost = async (req, res) => {
     }
 }
 
-module.exports = {createPost, getAllBlog}
+module.exports = {createPost, getAllBlog,getBlog}

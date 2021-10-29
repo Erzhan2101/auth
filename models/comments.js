@@ -1,21 +1,17 @@
 const mongoose = require("mongoose")
 
-const blogSchema = new mongoose.Schema({
-    title: {
+const commentsSchema = new mongoose.Schema({
+    content: {
         type: String,
         required: true,
     },
-    description: {
-        type: String,
-        required: true,
+    blog: {
+        type: mongoose.Schema.Types.ObjectId, ref: "blogs"
     },
     user:{
         // связь сдвумя коллекциями // данные //хранится только id
         type: mongoose.Schema.Types.ObjectId, ref:"users"
-    },
-    comments: [{
-        type: mongoose.Schema.Types.ObjectId, ref: "comments"
-    }]
+    }
 }, {timestamps: true})
 
-module.exports = mongoose.model("blogs", blogSchema)
+module.exports = mongoose.model("comments", commentsSchema)
