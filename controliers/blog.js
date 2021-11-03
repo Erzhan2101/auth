@@ -12,7 +12,10 @@ const getAllBlog = async (req, res) => {
 
 const getBlog = async (req, res) => {
     try {
-        const blog = await Blog.findById(req.params.id)
+        const blog = await Blog.findById(req.params.id).populate({
+            path:"comments",
+            populate:"user"
+        })
         res.json(blog)
     }catch (e) {
         res.status(400).json({message: "ошибка получения"})
