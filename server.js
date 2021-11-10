@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log(chalk.blue("DB IS CONNECTED")))
     .catch(() => console.log(chalk.red("DB IS NOT CONNECTED")))
 
-//мидилве
+//мидилвейр
 server.use(cors())
 server.use(express.json())
 
